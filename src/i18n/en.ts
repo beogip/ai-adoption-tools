@@ -118,7 +118,7 @@ export interface Dict {
 export const en: Dict = {
   htmlLang: "en",
   footer: {
-    before: "AI Adoption Tools · Built by Juan Gipponi, CTO at Refokus · Questions? ",
+    before: "AI Adoption Tools · Built by Juan Gipponi · Questions? ",
     linkText: "Find me on LinkedIn",
     after: "",
   },

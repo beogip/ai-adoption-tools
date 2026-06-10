@@ -3,7 +3,7 @@ import type { Dict } from "./en";
 export const es: Dict = {
   htmlLang: "es",
   footer: {
-    before: "AI Adoption Tools · Hecho por Juan Gipponi, CTO en Refokus · ¿Preguntas? ",
+    before: "AI Adoption Tools · Hecho por Juan Gipponi · ¿Preguntas? ",
     linkText: "Escribime por LinkedIn",
     after: "",
   },
