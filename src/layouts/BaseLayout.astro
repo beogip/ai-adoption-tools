@@ -1,6 +1,6 @@
 ---
 import "../styles/tokens.css";
-import { getPath, otherLang, LANG_LABEL, LINKEDIN_URL, type FooterCopy, type Lang, type Page } from "../i18n";
+import { getDict, getPath, otherLang, LANG_LABEL, LINKEDIN_URL, GITHUB_URL, SIBLING_URL, type FooterCopy, type Lang, type Page } from "../i18n";
 
 interface Props {
   lang: Lang;
@@ -30,6 +30,9 @@ const {
 
 const alt = otherLang(lang);
 const altHref = getPath(alt, page);
+const common = getDict(lang).common;
+// Absolute when a production `site` is configured in astro.config; relative fallback otherwise.
+const ogImage = Astro.site ? new URL("/og.png", Astro.site).href : "/og.png";
 ---
 
 <!doctype html>
@@ -38,11 +41,24 @@ const altHref = getPath(alt, page);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="author" content="Juan Gipponi" />
+    <meta name="theme-color" content="#0b0e14" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate" hreflang={alt} href={altHref} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <title>{title}</title>
   </head>
   <body>
@@ -58,7 +74,7 @@ const altHref = getPath(alt, page);
               <span />
             )
           }
-          <a class="lang-switch" href={altHref} hreflang={alt}>{LANG_LABEL[alt]}</a>
+          <a class="lang-switch" href={altHref} hreflang={alt} aria-label={common.langSwitchLabel}>{LANG_LABEL[alt]}</a>
         </div>
         {kicker && <p class="kicker">{kicker}</p>}
         {heroTitle && <h1>{heroTitle}</h1>}
@@ -69,7 +85,15 @@ const altHref = getPath(alt, page);
       <slot />
     </main>
     <footer class="site">
-      {footer.before}<a href={LINKEDIN_URL} target="_blank" rel="noopener">{footer.linkText}</a>{footer.after}
+      <p class="footer-line">
+        {footer.before}<a href={LINKEDIN_URL} target="_blank" rel="noopener">{footer.linkText}</a>{footer.after}
+        <span class="sep"> · </span><a href={GITHUB_URL} target="_blank" rel="noopener">GitHub &rarr;</a>
+      </p>
+      <p class="footer-note">
+        {footer.privacy}
+        <span class="sep"> · </span>{footer.siblingText}{" "}
+        <a href={SIBLING_URL} target="_blank" rel="noopener">code-first-agents.com</a>
+      </p>
     </footer>
   </body>
 </html>

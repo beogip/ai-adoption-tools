@@ -27,7 +27,7 @@ export default function CraftBuilder({ dict }: { dict: Dict }) {
 
   return (
     <div className="ws">
-      <div className="ws-step">{t.stepFields}</div>
+      <h2 className="ws-step">{t.stepFields}</h2>
       <p className="ws-guide">{t.fieldsGuide}</p>
 
       {CRAFT_ORDER.map((key) => {
@@ -53,7 +53,7 @@ export default function CraftBuilder({ dict }: { dict: Dict }) {
         );
       })}
 
-      <div className="ws-step">{t.stepPrompt}</div>
+      <h2 className="ws-step">{t.stepPrompt}</h2>
       <p className="ws-guide">{t.promptGuide}</p>
       <div className="craft-out" aria-live="polite">
         {prompt || <span className="craft-out-empty">{t.promptEmpty}</span>}

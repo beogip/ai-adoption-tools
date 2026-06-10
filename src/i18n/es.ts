@@ -6,12 +6,15 @@ export const es: Dict = {
     before: "AI Adoption Tools · Hecho por Juan Gipponi · ¿Preguntas? ",
     linkText: "Escribime por LinkedIn",
     after: "",
+    privacy: "Se guarda en tu navegador — nada se envía a ningún servidor.",
+    siblingText: "Del mismo autor:",
   },
   common: {
     backToTools: "Todas las tools",
     seeExamples: "Ver ejemplos",
     printPdf: "Imprimir / Guardar PDF",
     clearAll: "Borrar todo",
+    langSwitchLabel: "View in English",
   },
   home: {
     pageTitle: "AI Adoption Tools · Tools gratuitas para adoptar IA con criterio",
