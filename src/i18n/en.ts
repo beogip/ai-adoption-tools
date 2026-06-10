@@ -83,8 +83,6 @@ export interface Dict {
     copyLabel: string;
     copied: string;
     clearConfirm: string;
-    nextStepText: string;
-    nextStepCta: string;
   };
   process: {
     pageTitle: string;
@@ -142,7 +140,7 @@ export const en: Dict = {
     pageDesc: "Free tools to adopt AI with judgment: build prompts that work and decide what's worth automating.",
     kicker: "Free tools",
     title: "AI Adoption Tools",
-    lead: "Most teams adopt AI backwards: automate first, think later. These tools flip the order: build prompts that work and decide what's actually worth automating.",
+    lead: "Getting started with AI isn't about automating everything. It's knowing what's worth delegating and how to ask for it right. These two free tools help you with both, in that order.",
     craftTag: "Prompting",
     craftTitle: "CRAFT Builder",
     craftDesc:
@@ -244,8 +242,6 @@ export const en: Dict = {
     copyLabel: "Copy prompt",
     copied: "Copied",
     clearConfirm: "Clear everything you entered in the CRAFT template?",
-    nextStepText: "Next step: not sure this task is worth automating at all?",
-    nextStepCta: "Run it through the Process Evaluator →",
   },
   process: {
     pageTitle: "Process Evaluator · Should You Automate This With AI?",
