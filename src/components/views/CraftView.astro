@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import CraftBuilder from "../craft/CraftBuilder.tsx";
-import { getDict, getPath, type Lang } from "../../i18n";
+import { getDict, type Lang } from "../../i18n";
 
 interface Props {
   lang: Lang;
@@ -26,10 +26,4 @@ const t = dict.craft;
 >
   <p class="lead">{t.lead}</p>
   <CraftBuilder dict={dict} client:only="react" />
-
-  <div class="callout key">
-    <p style="margin:0">
-      {t.nextStepText} <a href={getPath(lang, "process")}>{t.nextStepCta}</a>
-    </p>
-  </div>
 </BaseLayout>

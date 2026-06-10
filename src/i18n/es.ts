@@ -18,7 +18,7 @@ export const es: Dict = {
     pageDesc: "Tools gratuitas para adoptar IA con criterio: armá prompts que funcionan y decidí qué conviene automatizar.",
     kicker: "Tools gratuitas",
     title: "AI Adoption Tools",
-    lead: "La mayoría de los equipos adopta IA al revés: automatizan primero y piensan después. Estas tools invierten el orden: armá prompts que funcionan y decidí qué conviene automatizar de verdad.",
+    lead: "Empezar a trabajar con AI no es automatizar todo. Es saber qué conviene delegarle y cómo pedírselo bien. Estas dos herramientas gratis te ayudan con las dos cosas, en ese orden.",
     craftTag: "Prompting",
     craftTitle: "CRAFT Builder",
     craftDesc:
@@ -119,8 +119,6 @@ export const es: Dict = {
     copyLabel: "Copiar prompt",
     copied: "Copiado",
     clearConfirm: "¿Borrar todo lo que cargaste en el template CRAFT?",
-    nextStepText: "Siguiente paso: ¿no sabés si esta tarea conviene automatizarla?",
-    nextStepCta: "Pasala por el Evaluador de procesos →",
   },
   process: {
     pageTitle: "Evaluador de procesos · ¿Conviene automatizarlo con IA?",
