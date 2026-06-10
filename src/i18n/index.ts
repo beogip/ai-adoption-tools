@@ -7,6 +7,12 @@ export type { Dict, FooterCopy } from "./en";
 /** Author profile, shared by the footer, the home about section and tool CTAs. */
 export const LINKEDIN_URL = "https://www.linkedin.com/in/juan-gipponi/";
 
+/** Source repository, linked from the footer. */
+export const GITHUB_URL = "https://github.com/beogip/ai-adoption-tools";
+
+/** Sibling site by the same author — signals the shared-creator family. */
+export const SIBLING_URL = "https://code-first-agents.com";
+
 export const DEFAULT_LANG: Lang = "en";
 export const LANGS: Lang[] = ["en", "es"];
 

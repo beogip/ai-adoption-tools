@@ -52,7 +52,7 @@ export default function ProcessScorer({ dict }: { dict: Dict }) {
 
   return (
     <div className="ws">
-      <div className="ws-step">{t.stepProcess}</div>
+      <h2 className="ws-step">{t.stepProcess}</h2>
       <div className="ws-meta">
         <div>
           <label htmlFor="ps-proceso">{t.metaProceso}</label>
@@ -74,7 +74,7 @@ export default function ProcessScorer({ dict }: { dict: Dict }) {
         </div>
       </div>
 
-      <div className="ws-step">{t.stepQuestions}</div>
+      <h2 className="ws-step">{t.stepQuestions}</h2>
       <p className="ws-guide">{t.questionsGuide}</p>
 
       {CRITERION_KEYS.map((key) => {
@@ -113,7 +113,7 @@ export default function ProcessScorer({ dict }: { dict: Dict }) {
         );
       })}
 
-      <div className="ws-step">{t.stepResult}</div>
+      <h2 className="ws-step">{t.stepResult}</h2>
       <div className="result">
         {result && zoneCopy ? (
           <>
@@ -136,7 +136,7 @@ export default function ProcessScorer({ dict }: { dict: Dict }) {
         )}
       </div>
 
-      <div className="ws-step">{t.stepFlags}</div>
+      <h2 className="ws-step">{t.stepFlags}</h2>
       <p className="ws-guide">{t.flagsGuide}</p>
       <ul className="check">
         {FLAG_KEYS.map((key) => {

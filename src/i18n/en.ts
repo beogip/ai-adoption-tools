@@ -34,6 +34,10 @@ export interface FooterCopy {
   before: string;
   linkText: string;
   after: string;
+  /** Persistent privacy reassurance, shown on every page footer. */
+  privacy: string;
+  /** Lead-in to the sibling-site cross-link (e.g. "Also by the same author:"). */
+  siblingText: string;
 }
 
 export interface Dict {
@@ -44,6 +48,8 @@ export interface Dict {
     seeExamples: string;
     printPdf: string;
     clearAll: string;
+    /** Accessible name for the language switch, in the current page's language. */
+    langSwitchLabel: string;
   };
   home: {
     pageTitle: string;
@@ -121,12 +127,15 @@ export const en: Dict = {
     before: "AI Adoption Tools · Built by Juan Gipponi · Questions? ",
     linkText: "Find me on LinkedIn",
     after: "",
+    privacy: "Saves in your browser — nothing is sent to any server.",
+    siblingText: "Also by the same author:",
   },
   common: {
     backToTools: "All tools",
     seeExamples: "See examples",
     printPdf: "Print / Save PDF",
     clearAll: "Clear all",
+    langSwitchLabel: "Switch to Spanish",
   },
   home: {
     pageTitle: "AI Adoption Tools · Free Tools to Adopt AI With Judgment",
