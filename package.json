@@ -2,6 +2,29 @@
   "name": "ai-adoption-tools",
   "type": "module",
   "version": "0.0.1",
+  "private": true,
+  "description": "Free tools to adopt AI with judgment: a step-by-step prompt builder (CRAFT) and a process evaluator to decide what is worth automating.",
+  "author": {
+    "name": "Juan Gipponi",
+    "url": "https://github.com/beogip"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beogip/ai-adoption-tools.git"
+  },
+  "homepage": "https://github.com/beogip/ai-adoption-tools#readme",
+  "bugs": {
+    "url": "https://github.com/beogip/ai-adoption-tools/issues"
+  },
+  "keywords": [
+    "ai",
+    "ai-adoption",
+    "prompt-engineering",
+    "craft-framework",
+    "astro",
+    "automation"
+  ],
   "engines": {
     "node": ">=22.12.0"
   },
