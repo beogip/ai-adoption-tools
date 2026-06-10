@@ -1,0 +1,41 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getDict, getPath, type Lang } from "../../i18n";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const dict = getDict(lang);
+const t = dict.home;
+---
+
+<BaseLayout
+  lang={lang}
+  page="home"
+  title={t.pageTitle}
+  description={t.pageDesc}
+  footer={dict.footer}
+  kicker={t.kicker}
+  heroTitle={t.title}
+  heroText={t.lead}
+>
+  <div class="cards">
+    <a class="card" href={getPath(lang, "craft")}>
+      <span class="tag">{t.craftTag}</span>
+      <h3>{t.craftTitle}</h3>
+      <p>{t.craftDesc}</p>
+    </a>
+    <a class="card" href={getPath(lang, "process")}>
+      <span class="tag">{t.processTag}</span>
+      <h3>{t.processTitle}</h3>
+      <p>{t.processDesc}</p>
+    </a>
+  </div>
+
+  <div class="callout key">
+    <p class="title">{t.howTitle}</p>
+    <p style="margin:0">{t.howBody}</p>
+  </div>
+</BaseLayout>

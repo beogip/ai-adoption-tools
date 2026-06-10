@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProcessScorer from "../process/ProcessScorer.tsx";
+import { getDict, type Lang } from "../../i18n";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const dict = getDict(lang);
+const t = dict.process;
+---
+
+<BaseLayout
+  lang={lang}
+  page="process"
+  title={t.pageTitle}
+  description={t.pageDesc}
+  footer={dict.footer}
+  kicker={t.kicker}
+  heroTitle={t.heroTitle}
+  heroText={t.heroText}
+  showBack={true}
+  backLabel={dict.common.backToTools}
+>
+  <p class="lead">{t.lead}</p>
+  <ProcessScorer dict={dict} client:only="react" />
+</BaseLayout>

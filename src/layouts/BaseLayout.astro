@@ -1,0 +1,75 @@
+---
+import "../styles/tokens.css";
+import { getPath, otherLang, LANG_LABEL, LINKEDIN_URL, type FooterCopy, type Lang, type Page } from "../i18n";
+
+interface Props {
+  lang: Lang;
+  page: Page;
+  title: string;
+  description: string;
+  footer: FooterCopy;
+  kicker?: string;
+  heroTitle?: string;
+  heroText?: string;
+  showBack?: boolean;
+  backLabel?: string;
+}
+
+const {
+  lang,
+  page,
+  title,
+  description,
+  footer,
+  kicker,
+  heroTitle,
+  heroText,
+  showBack = false,
+  backLabel = "",
+} = Astro.props;
+
+const alt = otherLang(lang);
+const altHref = getPath(alt, page);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate" hreflang={alt} href={altHref} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="inner">
+        <div class="topbar">
+          {
+            showBack ? (
+              <a class="back" href={getPath(lang, "home")}>
+                &larr; {backLabel}
+              </a>
+            ) : (
+              <span />
+            )
+          }
+          <a class="lang-switch" href={altHref} hreflang={alt}>{LANG_LABEL[alt]}</a>
+        </div>
+        {kicker && <p class="kicker">{kicker}</p>}
+        {heroTitle && <h1>{heroTitle}</h1>}
+        {heroText && <p>{heroText}</p>}
+      </div>
+    </header>
+    <main class="wrap">
+      <slot />
+    </main>
+    <footer class="site">
+      {footer.before}<a href={LINKEDIN_URL} target="_blank" rel="noopener">{footer.linkText}</a>{footer.after}
+    </footer>
+  </body>
+</html>

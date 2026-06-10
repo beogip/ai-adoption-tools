@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CraftBuilder from "../craft/CraftBuilder.tsx";
+import { getDict, getPath, type Lang } from "../../i18n";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const dict = getDict(lang);
+const t = dict.craft;
+---
+
+<BaseLayout
+  lang={lang}
+  page="craft"
+  title={t.pageTitle}
+  description={t.pageDesc}
+  footer={dict.footer}
+  kicker={t.kicker}
+  heroTitle={t.heroTitle}
+  heroText={t.heroText}
+  showBack={true}
+  backLabel={dict.common.backToTools}
+>
+  <p class="lead">{t.lead}</p>
+  <CraftBuilder dict={dict} client:only="react" />
+
+  <div class="callout key">
+    <p style="margin:0">
+      {t.nextStepText} <a href={getPath(lang, "process")}>{t.nextStepCta}</a>
+    </p>
+  </div>
+</BaseLayout>
