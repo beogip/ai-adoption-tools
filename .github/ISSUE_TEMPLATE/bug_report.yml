@@ -1,0 +1,38 @@
+name: Bug report
+description: Something is broken or behaves unexpectedly
+labels: ["bug"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: What happened, and what did you expect instead?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Go to...
+        2. Fill in...
+        3. See error
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser and OS
+      placeholder: e.g. Chrome 126 on macOS 14
+    validations:
+      required: false
+  - type: dropdown
+    id: language
+    attributes:
+      label: Site language
+      options:
+        - English (/)
+        - Spanish (/es)
+        - Both
+    validations:
+      required: false
