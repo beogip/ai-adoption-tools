@@ -1,8 +1,7 @@
 /*
- * Shared design system for the AI Adoption Tools suite.
- * Tokens and component classes are ported verbatim from the Consultoria AI
- * program (modulo-02-alumno.html) so the tools stay visually consistent with
- * the workshop material. This file is the single source of truth for look & feel.
+ * Design tokens for the AI Adoption Tools suite.
+ * Tokens and component classes shared by every tool, so the suite stays
+ * visually consistent. This file is the single source of truth for look & feel.
  */
 
 :root {

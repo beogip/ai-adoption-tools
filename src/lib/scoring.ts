@@ -1,6 +1,5 @@
 /**
- * Pure logic for the process scorer ("when to automate, when not").
- * Ported from Modulo 2 section 2.2 of the Consultoria AI program:
+ * Pure logic for the process evaluator ("when to automate, when not"):
  * five criteria scored 1-5, summed to a zone, plus three red flags.
  *
  * This module is language-agnostic: it returns zone/badge keys, never display
