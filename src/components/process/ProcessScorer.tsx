@@ -70,7 +70,13 @@ export default function ProcessScorer({ dict }: { dict: Dict }) {
         </div>
         <div>
           <label htmlFor="ps-fecha">{t.metaFecha}</label>
-          <input id="ps-fecha" type="date" value={state.meta.fecha} onChange={(e) => setMeta("fecha", e.target.value)} />
+          <input
+            id="ps-fecha"
+            type="date"
+            className={state.meta.fecha ? "" : "is-empty"}
+            value={state.meta.fecha}
+            onChange={(e) => setMeta("fecha", e.target.value)}
+          />
         </div>
       </div>
 
