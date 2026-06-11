@@ -19,8 +19,8 @@
   /* Ink */
   --text: #d4dee8;
   --text-bright: #f0f6fc;
-  --muted: #8195ab;
-  --muted-dim: #7b899b; /* lightened from #5d6b7d to clear WCAG AA 4.5:1 on dark surfaces */
+  --muted: #9aabc0;     /* secondary text — ≥7:1 (WCAG AAA) on every dark surface */
+  --muted-dim: #909eb2; /* tertiary/placeholder — ≥6:1, clears AA with headroom on dark surfaces */
 
   /* Lines */
   --border: #1e2733;
@@ -232,12 +232,27 @@ strong { color: var(--text-bright); font-weight: 600; }
   font-family: var(--font-body);
   color: var(--text-bright);
   background: var(--void-deep);
+  /* Render native UI (date picker indicator, calendar icon) for a dark canvas,
+     so the icon is light and legible instead of near-black on void-deep. */
+  color-scheme: dark;
   border: 1px solid var(--border-strong);
   border-radius: 8px;
   padding: 10px 12px;
   transition: border-color 0.15s, box-shadow 0.15s;
 }
+/* Lift the native calendar picker indicator to the teal accent for clear contrast. */
+.ws input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(78%) sepia(38%) saturate(640%) hue-rotate(116deg) brightness(95%) contrast(90%);
+  cursor: pointer;
+  opacity: 1;
+}
+.ws input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  filter: invert(88%) sepia(30%) saturate(720%) hue-rotate(116deg) brightness(102%) contrast(92%);
+}
 .ws input::placeholder, .ws textarea::placeholder { color: var(--muted-dim); }
+/* Empty date input: render the dd/mm/yyyy placeholder at the same muted tone as
+   text placeholders (date inputs have no ::placeholder; .is-empty is set in JS). */
+.ws input[type="date"].is-empty::-webkit-datetime-edit { color: var(--muted-dim); }
 .ws textarea { min-height: 76px; resize: vertical; line-height: 1.55; }
 .ws input:focus,
 .ws select:focus,
