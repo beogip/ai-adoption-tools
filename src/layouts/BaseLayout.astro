@@ -1,6 +1,7 @@
 ---
 import "../styles/tokens.css";
 import { getDict, getPath, otherLang, LANG_LABEL, LINKEDIN_URL, GITHUB_URL, SIBLING_URL, type FooterCopy, type Lang, type Page } from "../i18n";
+import LangSuggestionBanner from "../components/LangSuggestionBanner.astro";
 
 interface Props {
   lang: Lang;
@@ -31,8 +32,13 @@ const {
 const alt = otherLang(lang);
 const altHref = getPath(alt, page);
 const common = getDict(lang).common;
+// Banner copy is authored in the locale it suggests (always the other one).
+const bannerCopy = getDict(alt).common.langBanner;
 // Absolute when a production `site` is configured in astro.config; relative fallback otherwise.
 const ogImage = Astro.site ? new URL("/og.png", Astro.site).href : "/og.png";
+// Full hreflang set needs absolute URLs — `site` is configured in astro.config.
+const enHref = new URL(getPath("en", page), Astro.site).href;
+const esHref = new URL(getPath("es", page), Astro.site).href;
 ---
 
 <!doctype html>
@@ -52,7 +58,9 @@ const ogImage = Astro.site ? new URL("/og.png", Astro.site).href : "/og.png";
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="alternate" hreflang={alt} href={altHref} />
+    <link rel="alternate" hreflang="en" href={enHref} />
+    <link rel="alternate" hreflang="es" href={esHref} />
+    <link rel="alternate" hreflang="x-default" href={enHref} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -62,6 +70,7 @@ const ogImage = Astro.site ? new URL("/og.png", Astro.site).href : "/og.png";
     <title>{title}</title>
   </head>
   <body>
+    <LangSuggestionBanner targetLang={alt} targetUrl={altHref} copy={bannerCopy} />
     <header class="hero">
       <div class="inner">
         <div class="topbar">
@@ -74,7 +83,7 @@ const ogImage = Astro.site ? new URL("/og.png", Astro.site).href : "/og.png";
               <span />
             )
           }
-          <a class="lang-switch" href={altHref} hreflang={alt} aria-label={common.langSwitchLabel}>{LANG_LABEL[alt]}</a>
+          <a class="lang-switch" href={altHref} hreflang={alt} aria-label={common.langSwitchLabel} data-lang-toggle data-target-lang={alt}>{LANG_LABEL[alt]}</a>
         </div>
         {kicker && <p class="kicker">{kicker}</p>}
         {heroTitle && <h1>{heroTitle}</h1>}
@@ -95,5 +104,65 @@ const ogImage = Astro.site ? new URL("/og.png", Astro.site).href : "/og.png";
         <a href={SIBLING_URL} target="_blank" rel="noopener">code-first-agents.com</a>
       </p>
     </footer>
+
+    <script>
+      import { pickPreferredLang } from "../i18n/lang-preference";
+      import { hasLangCookie, writeLangCookie } from "../lib/lang-client";
+      import { LANGS, DEFAULT_LANG, type Lang } from "../i18n";
+
+      const current = (document.documentElement.lang as Lang) || DEFAULT_LANG;
+
+      // Persist an explicit choice when the user clicks the EN/ES toggle.
+      const toggle = document.querySelector<HTMLAnchorElement>("[data-lang-toggle]");
+      toggle?.addEventListener("click", () => {
+        const target = toggle.dataset.targetLang as Lang | undefined;
+        if (target) writeLangCookie(target);
+      });
+
+      // Suggestion banner: only when no explicit choice has been made yet and
+      // the browser prefers the other locale. Page load never writes the cookie.
+      const banner = document.querySelector<HTMLElement>("[data-lang-banner]");
+      if (banner) {
+        const tags = navigator.languages?.length
+          ? navigator.languages
+          : navigator.language
+            ? [navigator.language]
+            : [];
+        // Fall back to `current` so users whose browser prefers neither locale
+        // (empty or only-unsupported list) are never nudged.
+        const preferred = pickPreferredLang(tags, LANGS, current);
+
+        if (!hasLangCookie() && preferred !== current) {
+          banner.hidden = false;
+          // Double rAF so the browser paints the initial opacity:0 state before
+          // the class flips — otherwise the entrance transition can be skipped.
+          requestAnimationFrame(() =>
+            requestAnimationFrame(() => banner.classList.add("is-visible")),
+          );
+        }
+
+        banner.querySelector("[data-lang-accept]")?.addEventListener("click", () => {
+          const target = banner.dataset.targetLang as Lang | undefined;
+          if (target) writeLangCookie(target);
+        });
+
+        banner.querySelector("[data-lang-dismiss]")?.addEventListener("click", () => {
+          writeLangCookie(current);
+          banner.classList.remove("is-visible");
+          // Only the banner's own opacity transition ends the dismiss — ignore
+          // transitionend bubbling up from child hover transitions.
+          const onEnd = (e: TransitionEvent) => {
+            if (e.target !== banner || e.propertyName !== "opacity") return;
+            hide();
+          };
+          const hide = () => {
+            banner.removeEventListener("transitionend", onEnd);
+            banner.hidden = true;
+          };
+          banner.addEventListener("transitionend", onEnd);
+          window.setTimeout(hide, 500); // fallback if transitionend doesn't fire
+        });
+      }
+    </script>
   </body>
 </html>

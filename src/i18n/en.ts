@@ -40,6 +40,18 @@ export interface FooterCopy {
   siblingText: string;
 }
 
+/**
+ * Copy for the language-suggestion banner. Always authored in the language it
+ * suggests (the *target* locale), since the banner only appears to visitors
+ * whose browser prefers that language.
+ */
+export interface BannerCopy {
+  message: string;
+  accept: string;
+  /** Accessible name for the dismiss control. */
+  dismiss: string;
+}
+
 export interface Dict {
   htmlLang: string;
   footer: FooterCopy;
@@ -50,6 +62,8 @@ export interface Dict {
     clearAll: string;
     /** Accessible name for the language switch, in the current page's language. */
     langSwitchLabel: string;
+    /** Banner shown when the visitor's browser prefers the other locale. */
+    langBanner: BannerCopy;
   };
   home: {
     pageTitle: string;
@@ -134,6 +148,11 @@ export const en: Dict = {
     printPdf: "Print / Save PDF",
     clearAll: "Clear all",
     langSwitchLabel: "Switch to Spanish",
+    langBanner: {
+      message: "This page is also available in English.",
+      accept: "View in English",
+      dismiss: "Dismiss",
+    },
   },
   home: {
     pageTitle: "AI Adoption Tools · Free Tools to Adopt AI With Judgment",

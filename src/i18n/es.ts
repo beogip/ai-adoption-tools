@@ -15,6 +15,11 @@ export const es: Dict = {
     printPdf: "Imprimir / Guardar PDF",
     clearAll: "Borrar todo",
     langSwitchLabel: "View in English",
+    langBanner: {
+      message: "Esta página también está disponible en español.",
+      accept: "Ver en español",
+      dismiss: "Descartar",
+    },
   },
   home: {
     pageTitle: "AI Adoption Tools · Tools gratuitas para adoptar IA con criterio",

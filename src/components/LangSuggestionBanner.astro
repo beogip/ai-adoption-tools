@@ -1,0 +1,199 @@
+---
+import type { BannerCopy, Lang } from "../i18n";
+
+interface Props {
+  /** Locale being suggested (always the opposite of the current page). */
+  targetLang: Lang;
+  /** URL of the equivalent page in the target locale, from `getPath`. */
+  targetUrl: string;
+  /** Copy rendered in the target locale. */
+  copy: BannerCopy;
+}
+
+const { targetLang, targetUrl, copy } = Astro.props;
+---
+
+{/* Hidden by default; revealed client-side by BaseLayout's script. Fixed +
+    transform/opacity animation → no layout shift. */}
+{/* lang={targetLang} so the message (in the target locale) is announced with the
+    right TTS engine; role="status" is an implicit polite live region — the visible
+    <p> carries the content, so no aria-label (avoids double-announce). */}
+<aside
+  class="lang-suggest"
+  lang={targetLang}
+  data-lang-banner
+  data-target-lang={targetLang}
+  role="status"
+  hidden
+>
+  <div class="ls-card">
+    <span class="ls-signal" aria-hidden="true"></span>
+    <p class="ls-msg" lang={targetLang}>{copy.message}</p>
+    <a
+      class="ls-accept"
+      href={targetUrl}
+      hreflang={targetLang}
+      lang={targetLang}
+      data-lang-accept
+    >
+      {copy.accept}<span class="ls-arrow" aria-hidden="true">&rarr;</span>
+    </a>
+    <button
+      type="button"
+      class="ls-dismiss"
+      data-lang-dismiss
+      aria-label={copy.dismiss}
+    >
+      <span aria-hidden="true">&#10005;</span>
+    </button>
+  </div>
+</aside>
+
+<style>
+  .lang-suggest {
+    position: fixed;
+    top: 14px;
+    left: 50%;
+    z-index: 60;
+    width: min(560px, calc(100vw - 28px));
+    transform: translateX(-50%) translateY(-16px);
+    opacity: 0;
+    pointer-events: none;
+    transition:
+      opacity 0.35s ease,
+      transform 0.35s cubic-bezier(0.2, 0.85, 0.25, 1);
+  }
+  .lang-suggest.is-visible {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .ls-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 11px 12px 11px 18px;
+    background: color-mix(in srgb, var(--surface) 88%, transparent);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-strong);
+    border-radius: 14px;
+    box-shadow: 0 16px 44px rgba(0, 0, 0, 0.5), var(--glow);
+    overflow: hidden;
+  }
+  /* Accent hairline — same DNA as header.hero::before and .card::after. */
+  .ls-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), var(--accent-2), transparent);
+    opacity: 0.7;
+  }
+
+  .ls-signal {
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: var(--glow);
+  }
+
+  .ls-msg {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 14.5px;
+    line-height: 1.4;
+    color: var(--text);
+  }
+
+  .ls-accept {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+    color: var(--accent-ink);
+    background: var(--accent);
+    border-radius: 999px;
+    padding: 7px 14px;
+    text-decoration: none;
+    transition: background 0.15s, box-shadow 0.15s, transform 0.1s;
+  }
+  .ls-accept:hover {
+    color: var(--accent-ink);
+    background: var(--accent-bright);
+    box-shadow: var(--glow);
+  }
+  .ls-accept:active { transform: translateY(1px); }
+  .ls-arrow { transition: transform 0.15s; }
+  .ls-accept:hover .ls-arrow { transform: translateX(2px); }
+
+  .ls-dismiss {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    color: var(--muted);
+    background: transparent;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+  }
+  .ls-dismiss:hover {
+    color: var(--text-bright);
+    border-color: var(--accent-line);
+    background: var(--accent-soft);
+  }
+
+  .ls-accept:focus-visible,
+  .ls-dismiss:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--accent-soft), var(--glow);
+  }
+  /* Forced-colors mode drops box-shadow — restore a visible focus ring. */
+  @media (forced-colors: active) {
+    .ls-accept:focus-visible,
+    .ls-dismiss:focus-visible {
+      outline: 2px solid ButtonText;
+      outline-offset: 2px;
+      box-shadow: none;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .ls-card {
+      gap: 10px 12px;
+      padding: 11px 11px 11px 15px;
+      flex-wrap: wrap;
+    }
+    .ls-msg { flex-basis: calc(100% - 22px); font-size: 14px; }
+    .ls-accept { margin-left: 18px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lang-suggest {
+      transform: translateX(-50%);
+      transition: opacity 0.2s ease;
+    }
+    .lang-suggest.is-visible { transform: translateX(-50%); }
+    .ls-arrow { transition: none; }
+  }
+
+  @media print {
+    .lang-suggest { display: none !important; }
+  }
+</style>
