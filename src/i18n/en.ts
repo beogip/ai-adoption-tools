@@ -105,6 +105,7 @@ export interface Dict {
     metaProceso: string;
     metaProcesoPh: string;
     metaArea: string;
+    metaAreaPh: string;
     metaFecha: string;
     stepQuestions: string;
     questionsGuide: string;
@@ -284,6 +285,7 @@ export const en: Dict = {
     metaProceso: "Process",
     metaProcesoPh: "e.g. classify support tickets",
     metaArea: "Area / team",
+    metaAreaPh: "e.g. Support",
     metaFecha: "Date",
     stepQuestions: "The 5 questions",
     questionsGuide: "Score each criterion from 1 to 5. The total places you in a zone.",

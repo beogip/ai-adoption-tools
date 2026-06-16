@@ -138,6 +138,7 @@ export const es: Dict = {
     metaProceso: "Proceso",
     metaProcesoPh: "Ej: clasificar tickets de soporte",
     metaArea: "Área / equipo",
+    metaAreaPh: "Ej: Soporte",
     metaFecha: "Fecha",
     stepQuestions: "Las 5 preguntas",
     questionsGuide: "Puntuá cada criterio del 1 al 5. El total te ubica en una zona.",
