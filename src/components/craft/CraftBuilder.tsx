@@ -1,6 +1,6 @@
 import { buildPrompt, CRAFT_ORDER, EMPTY_CRAFT, type CraftFields } from "../../lib/craft";
 import { useLocalStorage } from "../../lib/useLocalStorage";
-import type { Dict } from "../../i18n";
+import { getPath, type Dict, type Lang } from "../../i18n";
 import CopyButton from "../shared/CopyButton";
 import PrintButton from "../shared/PrintButton";
 import RevealExamples from "../shared/RevealExamples";
@@ -15,6 +15,7 @@ const DEFAULT_STATE: CraftState = {
 
 export default function CraftBuilder({ dict }: { dict: Dict }) {
   const t = dict.craft;
+  const lang = dict.htmlLang as Lang;
   const [state, setState, clear] = useLocalStorage<CraftState>("craft-builder", DEFAULT_STATE);
   const prompt = buildPrompt(state.fields, t.promptLabels);
 
@@ -61,6 +62,11 @@ export default function CraftBuilder({ dict }: { dict: Dict }) {
       <div className="ws-actions">
         <CopyButton text={prompt} label={t.copyLabel} copiedLabel={t.copied} />
       </div>
+
+      <p className="disclaimer">
+        {t.disclaimer}{" "}
+        <a href={getPath(lang, "legal")}>{dict.footer.legalLinkText}</a>
+      </p>
 
       <div className="ws-actions">
         <PrintButton label={dict.common.printPdf} />

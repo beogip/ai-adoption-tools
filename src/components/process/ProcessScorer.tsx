@@ -142,6 +142,11 @@ export default function ProcessScorer({ dict }: { dict: Dict }) {
         )}
       </div>
 
+      <p className="disclaimer">
+        {t.disclaimer}{" "}
+        <a href={getPath(lang, "legal")}>{dict.footer.legalLinkText}</a>
+      </p>
+
       <h2 className="ws-step">{t.stepFlags}</h2>
       <p className="ws-guide">{t.flagsGuide}</p>
       <ul className="check">
