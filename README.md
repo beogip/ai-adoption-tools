@@ -18,7 +18,9 @@ a process evaluator to decide what is worth automating.
 ## Features
 
 - **Client-side only.** Everything runs in the browser. State is persisted to
-  `localStorage`; nothing leaves the browser.
+  `localStorage`; your inputs never leave the browser. The only telemetry is
+  anonymous, cookieless [Vercel Web Analytics](https://vercel.com/docs/analytics)
+  (page views — no cookies, no personal data).
 - **Print / PDF.** Each tool can print its result or save it as PDF.
 - **Bilingual.** English by default at the root (`/`), Spanish under `/es`.
 

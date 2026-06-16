@@ -66,7 +66,13 @@ export default function ProcessScorer({ dict }: { dict: Dict }) {
         </div>
         <div>
           <label htmlFor="ps-area">{t.metaArea}</label>
-          <input id="ps-area" type="text" value={state.meta.area} onChange={(e) => setMeta("area", e.target.value)} />
+          <input
+            id="ps-area"
+            type="text"
+            placeholder={t.metaAreaPh}
+            value={state.meta.area}
+            onChange={(e) => setMeta("area", e.target.value)}
+          />
         </div>
         <div>
           <label htmlFor="ps-fecha">{t.metaFecha}</label>
@@ -141,6 +147,11 @@ export default function ProcessScorer({ dict }: { dict: Dict }) {
           </p>
         )}
       </div>
+
+      <p className="disclaimer">
+        {t.disclaimer}{" "}
+        <a href={getPath(lang, "legal")}>{dict.footer.legalLinkText}</a>
+      </p>
 
       <h2 className="ws-step">{t.stepFlags}</h2>
       <p className="ws-guide">{t.flagsGuide}</p>

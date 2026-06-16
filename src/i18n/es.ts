@@ -6,7 +6,8 @@ export const es: Dict = {
     before: "AI Adoption Tools · Hecho por Juan Gipponi · ¿Preguntas? ",
     linkText: "Escribime por LinkedIn",
     after: "",
-    privacy: "Se guarda en tu navegador — nada se envía a ningún servidor.",
+    privacy: "Lo que escribís se queda en tu navegador — solo métricas anónimas y sin cookies.",
+    legalLinkText: "Términos y privacidad",
     siblingText: "Del mismo autor:",
   },
   common: {
@@ -32,7 +33,7 @@ export const es: Dict = {
       "Puntuá un proceso con 5 preguntas y descubrí si conviene automatizarlo, colaborar con IA o mantenerlo humano.",
     howTitle: "Cómo usarlas",
     howBody:
-      "Cada tool guarda tu trabajo en tu navegador (no se envía nada a ningún servidor). Podés imprimir o guardar en PDF cuando termines.",
+      "Cada tool guarda tu trabajo en tu navegador (tu trabajo no se envía a ningún servidor). Podés imprimir o guardar en PDF cuando termines.",
   },
   craft: {
     pageTitle: "CRAFT Builder · Armá prompts de IA efectivos",
@@ -122,6 +123,8 @@ export const es: Dict = {
     copyLabel: "Copiar prompt",
     copied: "Copiado",
     clearConfirm: "¿Borrar todo lo que cargaste en el template CRAFT?",
+    disclaimer:
+      "Herramienta educativa. Arma un prompt pero no ejecuta ninguna IA ni revisa su salida — revisá siempre lo que la IA devuelve antes de confiar en eso. Se ofrece “tal cual”, sin garantías.",
   },
   process: {
     pageTitle: "Evaluador de procesos · ¿Conviene automatizarlo con IA?",
@@ -135,6 +138,7 @@ export const es: Dict = {
     metaProceso: "Proceso",
     metaProcesoPh: "Ej: clasificar tickets de soporte",
     metaArea: "Área / equipo",
+    metaAreaPh: "Ej: Soporte",
     metaFecha: "Fecha",
     stepQuestions: "Las 5 preguntas",
     questionsGuide: "Puntuá cada criterio del 1 al 5. El total te ubica en una zona.",
@@ -227,5 +231,68 @@ export const es: Dict = {
     nextCraftCta: "armá el prompt con el CRAFT Builder →",
     nextHumanText: "Esta queda en manos humanas. Si querés una segunda opinión sobre dónde encaja la IA en tu equipo,",
     nextHumanCta: "escribime por LinkedIn →",
+    disclaimer:
+      "Herramienta educativa, no asesoramiento legal, financiero ni profesional. El veredicto es una guía para tu criterio, no una decisión — la responsabilidad de lo que automatices sigue siendo tuya. Se ofrece “tal cual”, sin garantías.",
+  },
+  legal: {
+    pageTitle: "Términos y privacidad · AI Adoption Tools",
+    pageDesc:
+      "Términos de uso, descargo de responsabilidad y privacidad de AI Adoption Tools — gratis, en el navegador, sin recolección de datos.",
+    kicker: "Legal",
+    heroTitle: "Términos y privacidad",
+    heroText:
+      "La versión corta y en criollo: herramientas gratis, ningún dato sale de tu navegador, sin garantías, y tus decisiones siguen siendo tuyas.",
+    updated: "Última actualización: 15 de junio de 2026",
+    intro:
+      "AI Adoption Tools es un conjunto gratuito y open source de herramientas que corren en tu navegador — el CRAFT Builder y el Evaluador de procesos — publicado por Juan Gipponi. Al usar este sitio aceptás los términos de abajo. Si no estás de acuerdo, no uses las herramientas.",
+    sections: [
+      {
+        heading: "Qué son estas herramientas",
+        body: [
+          "Ambas corren enteramente en tu navegador. Te ayudan a pensar: el CRAFT Builder arma un prompt con lo que escribís, y el Evaluador de procesos puntúa un proceso y sugiere si conviene automatizarlo, colaborar con IA o mantenerlo humano.",
+          "No ejecutan ningún modelo de IA, no envían tus datos a ningún lado ni toman decisiones por vos. Cualquier resultado es un punto de partida para tu propio criterio.",
+        ],
+      },
+      {
+        heading: "No es asesoramiento profesional",
+        body: [
+          "El contenido y los resultados tienen fines únicamente educativos e informativos. No son asesoramiento legal, financiero, impositivo, médico ni de ningún otro tipo profesional, y no deben usarse como tal.",
+          "El veredicto del Evaluador de procesos (“automatizar”, “colaborar con IA” o “mantener humano”) es una orientación general, no una recomendación adaptada a tu situación. Sos el único responsable de las decisiones que tomes y de revisar cualquier salida de IA antes de confiar en ella.",
+        ],
+      },
+      {
+        heading: "Sin garantías",
+        body: [
+          "Las herramientas se ofrecen “tal cual” y “según disponibilidad”, sin garantías de ningún tipo, expresas o implícitas, incluidas la idoneidad para un fin particular o la ausencia de errores. La lógica de puntuación es una heurística simple y puede dar resultados con los que no coincidas.",
+        ],
+      },
+      {
+        heading: "Limitación de responsabilidad",
+        body: [
+          "En la máxima medida permitida por la ley, el autor no se responsabiliza por ninguna pérdida o daño derivado del uso o la confianza en estas herramientas o sus resultados. Las usás bajo tu propio riesgo.",
+        ],
+      },
+      {
+        heading: "Privacidad",
+        body: [
+          "Estas herramientas no recopilan datos personales. Todo lo que ingresás se guarda solo en el almacenamiento local de tu navegador para que tu trabajo sobreviva a una recarga; nunca sale de tu dispositivo ni se envía a ningún servidor. Si borrás los datos del navegador, se elimina.",
+          "Para entender el uso, el sitio usa Vercel Web Analytics. Es respetuoso de la privacidad y agregado: no usa cookies, no guarda un identificador persistente y no recopila lo que ingresás ni datos personales — solo métricas anónimas como páginas vistas, origen del visitante, país y tipo de dispositivo. No hay cuentas, ni publicidad, ni otro rastreo de terceros.",
+          "El sitio está alojado en Vercel, que además puede conservar registros técnicos estándar de las solicitudes (como direcciones IP) por seguridad y operación; consultá la <a href=\"https://vercel.com/legal/privacy-policy\" target=\"_blank\" rel=\"noopener\">política de privacidad de Vercel</a> para más detalle.",
+        ],
+      },
+      {
+        heading: "Propiedad intelectual",
+        body: [
+          "El código fuente es open source bajo la Licencia MIT y está disponible en GitHub. La Licencia MIT rige el código; estos términos rigen tu uso del sitio publicado.",
+        ],
+      },
+      {
+        heading: "Cambios y contacto",
+        body: [
+          "Estos términos pueden actualizarse cada tanto; la fecha de “última actualización” de arriba refleja la versión vigente. ¿Preguntas? Escribime por LinkedIn o abrí un issue en GitHub.",
+        ],
+      },
+    ],
+    resourcesLabel: "Código y contacto:",
   },
 };
