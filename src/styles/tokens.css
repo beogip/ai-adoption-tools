@@ -448,8 +448,8 @@ footer.site .footer-note { margin: 8px 0 0; font-size: 12px; color: var(--muted-
   color: var(--muted-dim);
   margin: 14px 0 2px;
 }
-.disclaimer a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
-.disclaimer a:hover { color: var(--accent-bright); }
+.disclaimer a { color: var(--accent-bright); text-decoration: underline; text-underline-offset: 3px; }
+.disclaimer a:hover { color: #fff; }
 
 /* Terms & Privacy document */
 .legal-doc { margin: 14px 0 6px; }
@@ -492,6 +492,10 @@ footer.site .footer-note { margin: 8px 0 0; font-size: 12px; color: var(--muted-
   h2, h3, h4, .ws .ws-step, .result .total, h2 .num { color: #000; }
   li::marker { color: #000; }
   .ws .block, .callout, .result { border-color: #ccc; background: #fff; }
+  /* Legal page + inline disclaimer: force readable black-on-white (their muted
+     greys are near-invisible on paper otherwise). */
+  .disclaimer, .disclaimer a, .legal-updated, .legal-resources, .legal-resources a { color: #000; }
+  .legal-resources { border-color: #ccc; }
   /* Keep the "see examples" guidance in the printed/PDF output (force-expanded). */
   .reveal { display: block !important; border-color: #ccc; }
   .reveal summary { display: none !important; }
