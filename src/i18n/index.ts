@@ -2,7 +2,7 @@ import { en, type Dict } from "./en";
 import { es } from "./es";
 
 export type Lang = "en" | "es";
-export type { Dict, FooterCopy } from "./en";
+export type { Dict, FooterCopy, BannerCopy } from "./en";
 
 /** Author profile, shared by the footer, the home about section and tool CTAs. */
 export const LINKEDIN_URL = "https://www.linkedin.com/in/juan-gipponi/";
