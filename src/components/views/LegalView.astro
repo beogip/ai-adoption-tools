@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getDict, GITHUB_URL, LINKEDIN_URL, type Lang } from "../../i18n";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const dict = getDict(lang);
+const t = dict.legal;
+---
+
+<BaseLayout
+  lang={lang}
+  page="legal"
+  title={t.pageTitle}
+  description={t.pageDesc}
+  footer={dict.footer}
+  kicker={t.kicker}
+  heroTitle={t.heroTitle}
+  heroText={t.heroText}
+  showBack={true}
+  backLabel={dict.common.backToTools}
+>
+  <article class="legal-doc">
+    <p class="legal-updated">{t.updated}</p>
+    <p class="lead">{t.intro}</p>
+
+    {
+      t.sections.map((section) => (
+        <section>
+          <h2>{section.heading}</h2>
+          {section.body.map((para) => (
+            <p set:html={para} />
+          ))}
+        </section>
+      ))
+    }
+
+    <p class="legal-resources">
+      {t.resourcesLabel}{" "}
+      <a href={GITHUB_URL} target="_blank" rel="noopener">GitHub</a>
+      <span class="sep"> · </span>
+      <a href={LINKEDIN_URL} target="_blank" rel="noopener">LinkedIn</a>
+    </p>
+  </article>
+</BaseLayout>

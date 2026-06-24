@@ -38,8 +38,12 @@
   },
   "dependencies": {
     "@astrojs/react": "^5.0.7",
+    "@fontsource/jetbrains-mono": "^5.2.8",
+    "@fontsource/lora": "^5.2.8",
+    "@fontsource/syne": "^5.2.7",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
+    "@vercel/analytics": "^1.6.1",
     "astro": "^6.4.5",
     "react": "^19.2.7",
     "react-dom": "^19.2.7"

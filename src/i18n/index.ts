@@ -23,9 +23,9 @@ export function getDict(lang: Lang): Dict {
 }
 
 /** Logical page id, mapped to a localized URL. */
-export type Page = "home" | "craft" | "process";
+export type Page = "home" | "craft" | "process" | "legal";
 
-const SLUG: Record<Page, string> = { home: "", craft: "craft", process: "process" };
+const SLUG: Record<Page, string> = { home: "", craft: "craft", process: "process", legal: "legal" };
 
 /**
  * Build the URL for a page in a given language. English is the default locale

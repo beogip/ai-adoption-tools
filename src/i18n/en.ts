@@ -36,6 +36,8 @@ export interface FooterCopy {
   after: string;
   /** Persistent privacy reassurance, shown on every page footer. */
   privacy: string;
+  /** Link label for the Terms & Privacy page, shown in every footer. */
+  legalLinkText: string;
   /** Lead-in to the sibling-site cross-link (e.g. "Also by the same author:"). */
   siblingText: string;
 }
@@ -50,6 +52,12 @@ export interface BannerCopy {
   accept: string;
   /** Accessible name for the dismiss control. */
   dismiss: string;
+}
+
+/** One titled block of the Terms & Privacy page. */
+export interface LegalSection {
+  heading: string;
+  body: string[];
 }
 
 export interface Dict {
@@ -97,6 +105,8 @@ export interface Dict {
     copyLabel: string;
     copied: string;
     clearConfirm: string;
+    /** Short educational/no-warranty disclaimer shown under the assembled prompt. */
+    disclaimer: string;
   };
   process: {
     pageTitle: string;
@@ -109,6 +119,7 @@ export interface Dict {
     metaProceso: string;
     metaProcesoPh: string;
     metaArea: string;
+    metaAreaPh: string;
     metaFecha: string;
     stepQuestions: string;
     questionsGuide: string;
@@ -130,6 +141,22 @@ export interface Dict {
     nextCraftCta: string;
     nextHumanText: string;
     nextHumanCta: string;
+    /** Short educational/no-warranty disclaimer shown under the result. */
+    disclaimer: string;
+  };
+  legal: {
+    pageTitle: string;
+    pageDesc: string;
+    kicker: string;
+    heroTitle: string;
+    heroText: string;
+    /** "Last updated: …" line at the top of the document. */
+    updated: string;
+    /** Opening paragraph before the titled sections. */
+    intro: string;
+    sections: LegalSection[];
+    /** Lead-in for the closing source/contact links (GitHub · LinkedIn). */
+    resourcesLabel: string;
   };
 }
 
@@ -139,7 +166,8 @@ export const en: Dict = {
     before: "AI Adoption Tools · Built by Juan Gipponi · Questions? ",
     linkText: "Find me on LinkedIn",
     after: "",
-    privacy: "Saves in your browser — nothing is sent to any server.",
+    privacy: "Your inputs stay in your browser — only anonymous, cookieless analytics.",
+    legalLinkText: "Terms & Privacy",
     siblingText: "Also by the same author:",
   },
   common: {
@@ -170,7 +198,7 @@ export const en: Dict = {
       "Score a process with 5 questions and find out whether to automate it, collaborate with AI, or keep it human.",
     howTitle: "How to use them",
     howBody:
-      "Each tool saves your work in your browser (nothing is sent to any server). You can print or save as PDF when you finish.",
+      "Each tool saves your work in your browser (your work isn't sent to any server). You can print or save as PDF when you finish.",
   },
   craft: {
     pageTitle: "CRAFT Builder · Free AI Prompt Builder",
@@ -261,6 +289,8 @@ export const en: Dict = {
     copyLabel: "Copy prompt",
     copied: "Copied",
     clearConfirm: "Clear everything you entered in the CRAFT template?",
+    disclaimer:
+      "Educational tool. It assembles a prompt but doesn't run any AI or check its output — always review what the AI returns before relying on it. Provided “as is”, without warranty.",
   },
   process: {
     pageTitle: "Process Evaluator · Should You Automate This With AI?",
@@ -274,6 +304,7 @@ export const en: Dict = {
     metaProceso: "Process",
     metaProcesoPh: "e.g. classify support tickets",
     metaArea: "Area / team",
+    metaAreaPh: "e.g. Support",
     metaFecha: "Date",
     stepQuestions: "The 5 questions",
     questionsGuide: "Score each criterion from 1 to 5. The total places you in a zone.",
@@ -363,5 +394,68 @@ export const en: Dict = {
     nextCraftCta: "build the prompt with the CRAFT Builder →",
     nextHumanText: "This one stays with people. If you want a second opinion on where AI actually fits in your team,",
     nextHumanCta: "reach out on LinkedIn →",
+    disclaimer:
+      "Educational tool, not legal, financial or professional advice. The verdict is guidance to inform your judgment, not a decision — you stay responsible for what you automate. Provided “as is”, without warranty.",
+  },
+  legal: {
+    pageTitle: "Terms & Privacy · AI Adoption Tools",
+    pageDesc:
+      "Terms of use, disclaimer and privacy for the AI Adoption Tools — free, browser-based, no data collected.",
+    kicker: "Legal",
+    heroTitle: "Terms & Privacy",
+    heroText:
+      "The short, plain-language version: free tools, no data leaves your browser, no warranty, and your decisions stay yours.",
+    updated: "Last updated: June 15, 2026",
+    intro:
+      "AI Adoption Tools is a free, open-source set of browser-based tools — the CRAFT Builder and the Process Evaluator — published by Juan Gipponi. By using this site you agree to the terms below. If you don't agree, please don't use the tools.",
+    sections: [
+      {
+        heading: "What these tools are",
+        body: [
+          "Both tools run entirely in your browser. They help you think: the CRAFT Builder assembles a prompt from what you type, and the Process Evaluator scores a process and suggests whether to automate it, collaborate with AI, or keep it human.",
+          "They do not run any AI model, send your inputs anywhere, or make decisions for you. Any output is a starting point for your own judgment.",
+        ],
+      },
+      {
+        heading: "No professional advice",
+        body: [
+          "The content and results are for general educational and informational purposes only. They are not legal, financial, tax, medical, or other professional advice, and should not be relied on as such.",
+          "The Process Evaluator's verdict (“automate”, “collaborate with AI”, or “keep it human”) is a general guideline, not a recommendation tailored to your situation. You are solely responsible for the decisions you make and for reviewing any AI output before relying on it.",
+        ],
+      },
+      {
+        heading: "No warranty",
+        body: [
+          "The tools are provided “as is” and “as available”, without warranties of any kind, express or implied, including fitness for a particular purpose and freedom from error. The scoring logic is a simple heuristic and may produce results you disagree with.",
+        ],
+      },
+      {
+        heading: "Limitation of liability",
+        body: [
+          "To the fullest extent permitted by law, the author is not liable for any loss or damage arising from your use of, or reliance on, these tools or their output. You use them at your own risk.",
+        ],
+      },
+      {
+        heading: "Privacy",
+        body: [
+          "These tools do not collect personal data. Everything you enter is stored only in your browser's local storage so your work survives a refresh; it never leaves your device and is not sent to any server. Clearing your browser data removes it.",
+          "To understand usage, the site uses Vercel Web Analytics. It is privacy-friendly and aggregate: it sets no cookies, stores no persistent identifier, and does not collect your inputs or personal data — only anonymous metrics such as page views, referrer, country, and device type. There are no accounts, no advertising, and no other third-party tracking.",
+          "The site is hosted on Vercel, which may also keep standard technical request logs (such as IP addresses) for security and operation; see <a href=\"https://vercel.com/legal/privacy-policy\" target=\"_blank\" rel=\"noopener\">Vercel's privacy policy</a> for details.",
+        ],
+      },
+      {
+        heading: "Intellectual property",
+        body: [
+          "The source code is open source under the MIT License and available on GitHub. The MIT License governs the code; these terms govern your use of the hosted site.",
+        ],
+      },
+      {
+        heading: "Changes and contact",
+        body: [
+          "These terms may be updated from time to time; the “last updated” date above reflects the current version. Questions? Reach out on LinkedIn or open an issue on GitHub.",
+        ],
+      },
+    ],
+    resourcesLabel: "Source & contact:",
   },
 };

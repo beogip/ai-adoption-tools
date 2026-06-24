@@ -1,5 +1,18 @@
 ---
+// Self-hosted fonts (no third-party request to Google's CDN). Weights mirror
+// what the design system uses: Syne 600/700/800, Lora 400/600 + 400 italic,
+// JetBrains Mono 400/500/600.
+import "@fontsource/syne/600.css";
+import "@fontsource/syne/700.css";
+import "@fontsource/syne/800.css";
+import "@fontsource/lora/400.css";
+import "@fontsource/lora/400-italic.css";
+import "@fontsource/lora/600.css";
+import "@fontsource/jetbrains-mono/400.css";
+import "@fontsource/jetbrains-mono/500.css";
+import "@fontsource/jetbrains-mono/600.css";
 import "../styles/tokens.css";
+import Analytics from "@vercel/analytics/astro";
 import { getDict, getPath, otherLang, LANG_LABEL, LINKEDIN_URL, GITHUB_URL, SIBLING_URL, type FooterCopy, type Lang, type Page } from "../i18n";
 import LangSuggestionBanner from "../components/LangSuggestionBanner.astro";
 
@@ -61,13 +74,9 @@ const esHref = new URL(getPath("es", page), Astro.site).href;
     <link rel="alternate" hreflang="en" href={enHref} />
     <link rel="alternate" hreflang="es" href={esHref} />
     <link rel="alternate" hreflang="x-default" href={enHref} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
     <title>{title}</title>
+    {/* Vercel Web Analytics — cookieless, aggregate, no personal data. */}
+    <Analytics />
   </head>
   <body>
     <LangSuggestionBanner targetLang={alt} targetUrl={altHref} copy={bannerCopy} />
@@ -100,6 +109,7 @@ const esHref = new URL(getPath("es", page), Astro.site).href;
       </p>
       <p class="footer-note">
         {footer.privacy}
+        <span class="sep"> · </span><a href={getPath(lang, "legal")}>{footer.legalLinkText}</a>
         <span class="sep"> · </span>{footer.siblingText}{" "}
         <a href={SIBLING_URL} target="_blank" rel="noopener">code-first-agents.com</a>
       </p>
